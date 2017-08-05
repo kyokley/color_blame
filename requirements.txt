@@ -1,1 +1,2 @@
 colorclass
+git+https://github.com/kyokley/terminaltables.git
