@@ -25,11 +25,15 @@ def main():
 
     for line in sys.stdin.readlines():
         match = COMMIT_REGEX.match(line)
-        commit = match.group().strip()
+        commit = match.group().strip() if match else 'None'
 
         match = COMMIT_AUTHOR_REGEX.match(line)
-        author = match.group().split()[1]
-        code = line[match.end():].rstrip()
+        author = match.group().split()[1] if match else 'None'
+
+        if match:
+            code = line[match.end():].rstrip()
+        else:
+            code = ''
 
         if commit not in commit_dict:
             commit_dict[commit] = COLOR_TAGS[num_authors % len(COLOR_TAGS)]

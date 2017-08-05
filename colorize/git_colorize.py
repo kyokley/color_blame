@@ -14,9 +14,9 @@ COLOR_TAGS = [
         ]
 SystemRandom().shuffle(COLOR_TAGS)
 
-COMMIT_REGEX = re.compile(r'\s*[0-9a-fA-F]+')
-COMMIT_AUTHOR_REGEX = re.compile(r'^\s*[0-9a-fA-F]+ \([^\)]*\)')
-AUTHOR_REGEX = re.compile(r'(?<=^[0-9a-fA-F]{8} )\([^\)]*\)')
+COMMIT_REGEX = re.compile(r'\s*[0-9a-fA-F^]+')
+COMMIT_AUTHOR_REGEX = re.compile(r'^\s*[0-9a-fA-F^]+ \([^\)]*\)')
+AUTHOR_REGEX = re.compile(r'(?<=^[0-9a-fA-F^]{8} )\([^\)]*\)')
 
 commit_dict = dict()
 
@@ -29,13 +29,13 @@ def main():
 
     for line in stdin_lines():
         match = COMMIT_REGEX.match(line)
-        commit = match.group().strip()
+        commit = match.group().strip() if match else 'None'
 
         match = AUTHOR_REGEX.search(line)
-        author = match.group().strip()
+        author = match.group().strip() if match else 'None'
 
         match = COMMIT_AUTHOR_REGEX.match(line)
-        code = line[match.end():].rstrip()
+        code = line[match.end():].rstrip() if match else 'None'
 
         if commit not in commit_dict:
             commit_dict[commit] = COLOR_TAGS[num_authors % len(COLOR_TAGS)]
