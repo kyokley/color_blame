@@ -40,6 +40,7 @@ setup(
     entry_points={
         "console_scripts": [
             "color_svn_blame = colorize.svn_colorize:main",
+            "color_git_blame = colorize.git_colorize:main",
         ],
     },
 )
