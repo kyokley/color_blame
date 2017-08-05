@@ -36,9 +36,14 @@ def main():
             num_authors += 1
 
         tag = commit_dict[commit]
-        rows.append([Color('{%s}%s{/%s}' % (tag, commit, tag)),
-                     Color('{%s}%s{/%s}' % (tag, author, tag)),
-                     Color('{%s}%s{/%s}' % (tag, code, tag)),
+
+        wrapped_commit = u'{%s}%s{/%s}' % (tag, commit.decode('utf-8') if isinstance(commit, str) else commit, tag)
+        wrapped_author = u'{%s}%s{/%s}' % (tag, author.decode('utf-8') if isinstance(author, str) else author, tag)
+        wrapped_code = u'{%s}%s{/%s}' % (tag, code.decode('utf-8') if isinstance(code, str) else code, tag)
+
+        rows.append([Color(wrapped_commit),
+                     Color(wrapped_author),
+                     Color(wrapped_code),
                      ])
 
     table = BorderlessTable(rows)
