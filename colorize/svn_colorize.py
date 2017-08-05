@@ -29,7 +29,7 @@ def main():
 
         match = COMMIT_AUTHOR_REGEX.match(line)
         author = match.group().split()[1]
-        code = line[match.end():]
+        code = line[match.end():].rstrip()
 
         if commit not in commit_dict:
             commit_dict[commit] = COLOR_TAGS[num_authors % len(COLOR_TAGS)]
