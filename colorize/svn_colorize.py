@@ -19,11 +19,14 @@ COMMIT_AUTHOR_REGEX = re.compile(r'^\s*\d+\s+\S+')
 
 commit_dict = dict()
 
+def stdin_lines():
+    return sys.stdin.readlines()
+
 def main():
     rows = []
     num_authors = 0
 
-    for line in sys.stdin.readlines():
+    for line in stdin_lines():
         match = COMMIT_REGEX.match(line)
         commit = match.group().strip() if match else 'None'
 
