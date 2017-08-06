@@ -1,6 +1,3 @@
--r requirements.txt
--e .
+-r test_requirements.txt
 bpython
 pdbpp
-nose
-mock
