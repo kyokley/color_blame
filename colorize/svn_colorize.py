@@ -55,7 +55,7 @@ def main():
 
     table = BorderlessTable(rows)
     table.inner_heading_row_border = False
-    print(table.table)
+    print(table.encoded_table('utf-8'))
 
 if __name__ == '__main__':
     main()
