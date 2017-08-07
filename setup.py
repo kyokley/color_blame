@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name="Color Blame",
 
-    version="0.1",
+    version="0.2",
 
     description="Colorize VCS blame command output",
     long_description="Colorize blame output for git and svn",
