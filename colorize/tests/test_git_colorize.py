@@ -9,8 +9,7 @@ class TestMain(unittest.TestCase):
 
         self.Color_patcher = mock.patch('colorize.git_colorize.Color')
         self.mock_Color = self.Color_patcher.start()
-        self.mock_Color.side_effect = ['colored_commit',
-                                       'colored_author',
+        self.mock_Color.side_effect = ['colored_author',
                                        'colored_code']
 
         self.BorderlessTable_patcher = mock.patch('colorize.git_colorize.BorderlessTable')
@@ -30,12 +29,10 @@ class TestMain(unittest.TestCase):
                 ]
         main()
 
-        self.mock_Color.assert_any_call(u'{mock_color}e7ab9458{/mock_color}')
-        self.mock_Color.assert_any_call(u'{mock_color}(John Doe        2017-05-13 16:24:56 -0700    1){/mock_color}')
+        self.mock_Color.assert_any_call(u'{mock_color}e7ab9458 (John Doe        2017-05-13 16:24:56 -0700    1){/mock_color}')
         self.mock_Color.assert_any_call(u'{mock_color} #!/usr/bin/env python{/mock_color}')
 
-        self.mock_BorderlessTable.assert_called_once_with([['colored_commit',
-                                                            'colored_author',
+        self.mock_BorderlessTable.assert_called_once_with([['colored_author',
                                                             'colored_code']])
 
     def test_unicode(self):
@@ -43,12 +40,10 @@ class TestMain(unittest.TestCase):
                 ]
         main()
 
-        self.mock_Color.assert_any_call(u'{mock_color}e7ab9458{/mock_color}')
-        self.mock_Color.assert_any_call(u'{mock_color}(\u0134\xf0\u0127\xf1 \xd0\xf0\xeb        2017-05-13 16:24:56 -0700    1){/mock_color}')
+        self.mock_Color.assert_any_call(u'{mock_color}e7ab9458 (\u0134\xf0\u0127\xf1 \xd0\xf0\xeb        2017-05-13 16:24:56 -0700    1){/mock_color}')
         self.mock_Color.assert_any_call(u'{mock_color} #!/usr/bin/env python{/mock_color}')
 
-        self.mock_BorderlessTable.assert_called_once_with([['colored_commit',
-                                                            'colored_author',
+        self.mock_BorderlessTable.assert_called_once_with([['colored_author',
                                                             'colored_code']])
 
     def test_byte_str(self):
@@ -56,10 +51,8 @@ class TestMain(unittest.TestCase):
                 ]
         main()
 
-        self.mock_Color.assert_any_call(u'{mock_color}e7ab9458{/mock_color}')
-        self.mock_Color.assert_any_call(u'{mock_color}(\u0134\xf0\u0127\xf1 \xd0\xf0\xeb        2017-05-13 16:24:56 -0700    1){/mock_color}')
+        self.mock_Color.assert_any_call(u'{mock_color}e7ab9458 (\u0134\xf0\u0127\xf1 \xd0\xf0\xeb        2017-05-13 16:24:56 -0700    1){/mock_color}')
         self.mock_Color.assert_any_call(u'{mock_color} #!/usr/bin/env python{/mock_color}')
 
-        self.mock_BorderlessTable.assert_called_once_with([['colored_commit',
-                                                            'colored_author',
+        self.mock_BorderlessTable.assert_called_once_with([['colored_author',
                                                             'colored_code']])

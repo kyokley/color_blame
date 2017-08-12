@@ -14,9 +14,8 @@ COLOR_TAGS = [
         ]
 SystemRandom().shuffle(COLOR_TAGS)
 
-COMMIT_REGEX = re.compile(r'\s*[0-9a-fA-F^]+')
-COMMIT_AUTHOR_REGEX = re.compile(r'^\s*[0-9a-fA-F^]+ \([^\)]*\)')
-AUTHOR_REGEX = re.compile(r'(?<=^[0-9a-fA-F^]{8} )\([^\)]*\)')
+COMMIT_REGEX = re.compile(r'^\s*[0-9a-fA-F^]+\s')
+AUTHOR_REGEX = re.compile(r'.*?\([^\)]*\)')
 
 commit_dict = dict()
 
@@ -34,7 +33,7 @@ def main():
         match = AUTHOR_REGEX.search(line)
         author = match.group().strip() if match else 'None'
 
-        match = COMMIT_AUTHOR_REGEX.match(line)
+        match = AUTHOR_REGEX.match(line)
         code = line[match.end():].rstrip() if match else 'None'
 
         if commit not in commit_dict:
@@ -43,12 +42,10 @@ def main():
 
         tag = commit_dict[commit]
 
-        wrapped_commit = u'{%s}%s{/%s}' % (tag, commit.decode('utf-8') if isinstance(commit, str) else commit, tag)
         wrapped_author = u'{%s}%s{/%s}' % (tag, author.decode('utf-8') if isinstance(author, str) else author, tag)
         wrapped_code = u'{%s}%s{/%s}' % (tag, code.decode('utf-8') if isinstance(code, str) else code, tag)
 
-        rows.append([Color(wrapped_commit),
-                     Color(wrapped_author),
+        rows.append([Color(wrapped_author),
                      Color(wrapped_code),
                      ])
 
