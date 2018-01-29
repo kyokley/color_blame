@@ -10,18 +10,23 @@ The purpose of this script is to add some highlighting to the output of the blam
 The easiest way to install this script is to invoke it through docker. Add the following to your .bashrc.
 
 ```bash
-alias color_git_blame="docker run --rm \
-                                  -i \
-                                  kyokley/color_blame \
-                                  color_git_blame"
 alias color_svn_blame="docker run --rm \
                                   -i \
                                   kyokley/color_blame \
                                   color_svn_blame"
+alias color_git_blame="docker run --rm \
+                                  -i \
+                                  kyokley/color_blame \
+                                  color_git_blame"
 ```
 
 ## Usage
+For svn:
 ```bash
-$ git blame init.vim | color_git_blame | less
+$ svn blame FILENAME | color_svn_blame | less
 ```
 
+For git:
+```bash
+$ git blame FILENAME | color_git_blame | less
+```
