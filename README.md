@@ -32,5 +32,5 @@ $ git blame FILENAME | color_git_blame | less
 ```
 
 ### Vim Integration
-I wrote up a gist on how to add git and svn calls to *VIM* and *Neovim*. Check it out.
-[Useful VCS commands in VIM](https://gist.github.com/kyokley/c10ff97148a6533116ac714ad6fb5ac2)
+I wrote up a gist on how to add git and svn calls to *Vim* and *Neovim*. Check it out.
+[Useful VCS commands in Vim](https://gist.github.com/kyokley/c10ff97148a6533116ac714ad6fb5ac2)
