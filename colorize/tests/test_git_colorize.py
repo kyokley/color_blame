@@ -56,3 +56,5 @@ class TestMain(unittest.TestCase):
 
         self.mock_BorderlessTable.assert_called_once_with([['colored_author',
                                                             'colored_code']])
+
+# TODO: Add tests for git blame output that contains filenames
