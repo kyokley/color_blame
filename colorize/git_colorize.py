@@ -28,7 +28,7 @@ def main():
     rows = []
     num_authors = 0
 
-    str_lines = (x.decode('utf-8')
+    str_lines = (x.decode('utf-8') if isinstance(x, bytes) else x
                  for x in stdin_lines())
 
     for line in str_lines:
