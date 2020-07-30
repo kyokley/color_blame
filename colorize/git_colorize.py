@@ -19,14 +19,19 @@ AUTHOR_REGEX = re.compile(r'.*?\([^\)]*\)')
 
 commit_dict = dict()
 
+
 def stdin_lines():
     return sys.stdin.readlines()
+
 
 def main():
     rows = []
     num_authors = 0
 
-    for line in stdin_lines():
+    str_lines = (x.decode('utf-8')
+                 for x in stdin_lines())
+
+    for line in str_lines:
         match = COMMIT_REGEX.match(line)
         commit = match.group().strip() if match else 'None'
 
@@ -42,8 +47,8 @@ def main():
 
         tag = commit_dict[commit]
 
-        wrapped_author = u'{%s}%s{/%s}' % (tag, author.decode('utf-8') if isinstance(author, str) else author, tag)
-        wrapped_code = u'{%s}%s{/%s}' % (tag, code.decode('utf-8') if isinstance(code, str) else code, tag)
+        wrapped_author = '{%s}%s{/%s}' % (tag, author, tag)
+        wrapped_code = '{%s}%s{/%s}' % (tag, code, tag)
 
         rows.append([Color(wrapped_author),
                      Color(wrapped_code),
@@ -52,6 +57,7 @@ def main():
     table = BorderlessTable(rows)
     table.inner_heading_row_border = False
     print(table.unicode_table('utf-8'))
+
 
 if __name__ == '__main__':
     main()

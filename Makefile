@@ -5,4 +5,4 @@ build-dev:
 	docker build --target=dev -t kyokley/color_blame .
 
 tests: build-dev
-	docker run --rm -t -v $$(pwd):/app kyokley/color_blame pytest
+	docker run --rm -t kyokley/color_blame pytest

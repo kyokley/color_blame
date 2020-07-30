@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=python:3.7-alpine
+ARG BASE_IMAGE=python:3.8-alpine
 
 
 FROM ${BASE_IMAGE} AS builder
@@ -43,8 +43,8 @@ RUN python setup.py install
 
 
 FROM base AS dev
-RUN apk add --no-cache gcc
+RUN apk add --no-cache gcc musl-dev
 RUN pip install pip --upgrade && \
     /root/.poetry/bin/poetry install
 COPY . /app
-RUN python setup.py develop
+RUN python setup.py install
