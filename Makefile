@@ -9,3 +9,6 @@ shell:
 
 tests: build-dev
 	docker run --rm -t -v $$(pwd):/app kyokley/color_blame pytest
+
+autoformat: build-dev
+	docker run --rm -t -v $$(pwd):/app kyokley/color_blame black .
