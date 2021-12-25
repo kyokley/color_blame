@@ -27,6 +27,7 @@ def main():
     num_authors = 0
 
     for line in stdin_lines():
+        line = line.decode('utf-8')
         match = COMMIT_REGEX.match(line)
         commit = match.group().strip() if match else 'None'
 
@@ -44,9 +45,9 @@ def main():
 
         tag = commit_dict[commit]
 
-        wrapped_commit = u'{%s}%s{/%s}' % (tag, commit.decode('utf-8') if isinstance(commit, str) else commit, tag)
-        wrapped_author = u'{%s}%s{/%s}' % (tag, author.decode('utf-8') if isinstance(author, str) else author, tag)
-        wrapped_code = u'{%s}%s{/%s}' % (tag, code.decode('utf-8') if isinstance(code, str) else code, tag)
+        wrapped_commit = '{%s}%s{/%s}' % (tag, commit, tag)
+        wrapped_author = '{%s}%s{/%s}' % (tag, author, tag)
+        wrapped_code = '{%s}%s{/%s}' % (tag, code, tag)
 
         rows.append([Color(wrapped_commit),
                      Color(wrapped_author),
