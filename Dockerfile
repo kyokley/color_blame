@@ -40,8 +40,6 @@ COPY poetry.lock pyproject.toml /app/
 RUN pip install -U pip wheel
 
 COPY . /app
-RUN $POETRY_VENV/bin/pip install poetry && \
-        $POETRY_VENV/bin/poetry install
 
 FROM base AS dev
 ENV VIRTUAL_ENV=/venv
