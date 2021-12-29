@@ -1,5 +1,7 @@
+.PHONY: autoformat tests shell build-dev build
+
 build:
-	docker build -t kyokley/color_blame --target=base .
+	docker build -t kyokley/color_blame --target=prod .
 
 build-dev:
 	docker build -t kyokley/color_blame --target=dev .

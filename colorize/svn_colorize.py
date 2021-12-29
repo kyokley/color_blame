@@ -29,7 +29,7 @@ def main():
     num_authors = 0
 
     for line in stdin_lines():
-        line = line.decode("utf-8")
+        line = line.decode("utf-8") if isinstance(line, bytes) else line
         match = COMMIT_REGEX.match(line)
         commit = match.group().strip() if match else "None"
 
