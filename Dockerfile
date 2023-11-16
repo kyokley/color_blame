@@ -17,7 +17,7 @@ RUN apk add --no-cache git g++ libffi-dev
 
 COPY poetry.lock pyproject.toml /app/
 
-RUN $POETRY_VENV/bin/pip install poetry && $POETRY_VENV/bin/poetry install --no-dev
+RUN $POETRY_VENV/bin/pip install --upgrade pip poetry && $POETRY_VENV/bin/poetry install --no-dev
 
 FROM ${BASE_IMAGE} AS base
 
@@ -45,7 +45,7 @@ FROM base AS dev
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-RUN $POETRY_VENV/bin/pip install poetry && \
+RUN $POETRY_VENV/bin/pip install --upgrade pip poetry && \
         $POETRY_VENV/bin/poetry install && \
         python setup.py develop
 
