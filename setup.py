@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="Color Blame",
-    version="0.3",
+    version="0.4",
     description="Colorize VCS blame command output",
     long_description="Colorize blame output for git and svn",
     url="https://github.com/kyokley/color_blame",
