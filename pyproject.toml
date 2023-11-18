@@ -8,6 +8,7 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.10"
 terminaltables = {git = "https://github.com/kyokley/terminaltables.git"}
+colorclass = "^2.2.2"
 
 [tool.poetry.dev-dependencies]
 bpython = "^0.22.1"
