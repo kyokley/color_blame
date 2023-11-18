@@ -48,4 +48,4 @@ ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 COPY . /app
-RUN $POETRY_VENV/bin/poetry install --no-dev
+RUN $POETRY_VENV/bin/poetry build && $POETRY_VENV/bin/poetry install --no-dev
