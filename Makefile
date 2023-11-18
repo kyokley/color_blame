@@ -7,10 +7,10 @@ build-dev:
 	docker build -t kyokley/color_blame --target=dev .
 
 shell:
-	docker run --rm -it -v $$(pwd):/app kyokley/color_blame /bin/sh
+	docker run --rm -it -v $$(pwd):/color_blame_src kyokley/color_blame /bin/sh
 
 tests: build-dev
-	docker run --rm -t -v $$(pwd):/app kyokley/color_blame pytest
+	docker run --rm -t -v $$(pwd):/color_blame_src kyokley/color_blame pytest
 
 autoformat: build-dev
-	docker run --rm -t -v $$(pwd):/app kyokley/color_blame black .
+	docker run --rm -t -v $$(pwd):/color_blame_src kyokley/color_blame black .

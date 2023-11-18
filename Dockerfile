@@ -13,9 +13,9 @@ RUN pip install -U pip wheel
 
 RUN apk add --no-cache git g++ libffi-dev
 
-WORKDIR /app
+WORKDIR /color_blame_src
 
-COPY poetry.lock pyproject.toml /app/
+COPY poetry.lock pyproject.toml /color_blame_src/
 
 RUN $POETRY_VENV/bin/pip install --upgrade pip poetry && $POETRY_VENV/bin/poetry install --no-dev
 
@@ -33,13 +33,13 @@ RUN apk add --no-cache git g++ libffi-dev
 COPY --from=builder ${POETRY_VENV} ${POETRY_VENV}
 COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
-WORKDIR /app
+WORKDIR /color_blame_src
 
 FROM base AS dev
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-COPY poetry.lock pyproject.toml /app/
+COPY poetry.lock pyproject.toml /color_blame_src/
 RUN $POETRY_VENV/bin/pip install --upgrade pip poetry && \
         $POETRY_VENV/bin/poetry install
 
@@ -47,7 +47,7 @@ FROM base AS prod
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-COPY . /app
+COPY . /color_blame_src
 RUN $POETRY_VENV/bin/poetry build && \
         $POETRY_VENV/bin/poetry install --no-dev && \
         $POETRY_VENV/bin/pip install .
