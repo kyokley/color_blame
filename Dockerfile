@@ -17,7 +17,7 @@ WORKDIR /color_blame_src
 
 COPY poetry.lock pyproject.toml /color_blame_src/
 
-RUN $POETRY_VENV/bin/pip install --upgrade pip poetry && $POETRY_VENV/bin/poetry install --no-dev
+RUN $POETRY_VENV/bin/pip install --upgrade pip poetry && $POETRY_VENV/bin/poetry install --only main
 
 FROM ${BASE_IMAGE} AS base
 
@@ -49,5 +49,5 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 COPY . /color_blame_src
 RUN $POETRY_VENV/bin/poetry build && \
-        $POETRY_VENV/bin/poetry install --no-dev && \
+        $POETRY_VENV/bin/poetry install --only main && \
         $POETRY_VENV/bin/pip install .
