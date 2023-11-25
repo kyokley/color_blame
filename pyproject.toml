@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "colorize"
-version = "0.1.0"
+version = "0.4.0"
 description = ""
 authors = ["Kevin Yokley <kyokley2@gmail.com>"]
 license = "MIT"
@@ -8,13 +8,18 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.10"
 terminaltables = {git = "https://github.com/kyokley/terminaltables.git"}
+colorclass = "^2.2.2"
 
 [tool.poetry.dev-dependencies]
-bpython = "^0.22.1"
+bpython = "^0.24.0"
 pdbpp = "^0.10.3"
-pytest = "^6.2.5"
-mock = "^4.0.3"
-black = "^21.12b0"
+pytest = "^7.2.0"
+mock = "^5.1.0"
+black = "^23.11.0"
+
+[tool.poetry.scripts]
+color_svn_blame = "colorize.svn_colorize:main"
+color_git_blame = "colorize.git_colorize:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
